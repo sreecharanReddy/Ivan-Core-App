@@ -14,6 +14,8 @@ select
 	,"Facility"."Contact" "Contact"
 	,"Address"."Address1" "Address1"
 	,"Org"."OrgName1" "OrgName1"
+	,"Facility"."OrgID" "OrgID"
+	,"Facility"."AddressID" "AddressID"
 from "core"."Facility" "Facility"
 	left join "core"."Address" "Address" on "Facility"."AddressID" = "Address"."AddressID"
 	left join "core"."Organization" "Org" on "Facility"."OrgID" = "Org"."OrgID"
@@ -35,8 +37,14 @@ from "core"."Facility" "Facility"
     <field name="InactiveDate" type="DateTime" label="Inactive Date" showInSummary="true" />
     <field name="Dbaname" type="String" label="DBA Name" length="30" />
     <field name="Contact" type="String" label="Contact" length="30" />
-    <field name="Address1" type="String" readOnly="true" label="Address Address1" length="30" />
-    <field name="OrgName1" type="String" readOnly="true" label="Org Name1" length="50" />
+    <field name="Address1" type="String" readOnly="true" label="Address" length="30" />
+    <field name="OrgName1" type="String" readOnly="true" label="Organization Name" length="50" />
+    <field name="OrgID" type="Int32" label="Org ID">
+      <items style="Lookup" dataController="Organization" newDataView="createForm1" dataValueField="OrgID" dataTextField="OrgName1" />
+    </field>
+    <field name="AddressID" type="Int32" label="Address ID">
+      <items style="Lookup" dataController="Address" newDataView="createForm1" dataValueField="AddressID" dataTextField="Address1" />
+    </field>
   </fields>
   <views>
     <view id="grid1" type="Grid" commandId="command1" label="Facility">
@@ -49,8 +57,8 @@ from "core"."Facility" "Facility"
         <dataField fieldName="InactiveDate" columns="10" />
         <dataField fieldName="Dbaname" columns="30" />
         <dataField fieldName="Contact" columns="30" />
-        <dataField fieldName="Address1" columns="30" />
-        <dataField fieldName="OrgName1" columns="50" />
+        <dataField fieldName="OrgID" aliasFieldName="OrgName1" />
+        <dataField fieldName="AddressID" aliasFieldName="Address1" />
       </dataFields>
     </view>
     <view id="editForm1" type="Form" commandId="command1" label="Review Facility">
@@ -66,8 +74,8 @@ from "core"."Facility" "Facility"
             <dataField fieldName="InactiveDate" columns="10" />
             <dataField fieldName="Dbaname" columns="30" />
             <dataField fieldName="Contact" columns="30" />
-            <dataField fieldName="Address1" columns="30" />
-            <dataField fieldName="OrgName1" columns="50" />
+            <dataField fieldName="OrgID" aliasFieldName="OrgName1" />
+            <dataField fieldName="AddressID" aliasFieldName="Address1" />
           </dataFields>
         </category>
       </categories>
@@ -85,8 +93,8 @@ from "core"."Facility" "Facility"
             <dataField fieldName="InactiveDate" columns="10" />
             <dataField fieldName="Dbaname" columns="30" />
             <dataField fieldName="Contact" columns="30" />
-            <dataField fieldName="Address1" columns="30" />
-            <dataField fieldName="OrgName1" columns="50" />
+            <dataField fieldName="OrgID" aliasFieldName="OrgName1" />
+            <dataField fieldName="AddressID" aliasFieldName="Address1" />
           </dataFields>
         </category>
       </categories>

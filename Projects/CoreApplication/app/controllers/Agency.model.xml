@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<dataModel baseSchema="core" baseTable="Agency" alias="Agency" created="2018-08-15T21:42:46" modified="2018-08-15T21:44:39" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+<dataModel baseSchema="core" baseTable="Agency" alias="Agency" created="2018-08-15T21:42:46" modified="2018-08-15T22:13:30" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
   <foreignKeys>
     <foreignKey id="Address" parentTableSchema="core" parentTableName="Address" x="325" y="20">
       <foreignKeyColumn columnName="AddressId" parentColumnName="AddressID" />
@@ -24,9 +24,9 @@
     <column name="CreatedBy" fieldName="CreatedBy" label="Created By" />
     <column name="CreationDate" fieldName="CreationDate" label="Creation Date" format="g" />
     <column name="ModificationDate" fieldName="ModificationDate" label="Modification Date" format="g" />
-    <column name="AddressId" fieldName="AddressID" label="Address Id" aliasColumnName="Address1" aliasForeignKey="Address" />
-    <column name="FacilityID" fieldName="FacilityID" label="Facility ID" aliasColumnName="FacilityName" aliasForeignKey="Facility" />
     <column name="FacilityName" fieldName="FacilityName" label="Facility Name" foreignKey="Facility" />
-    <column name="OrgName1" fieldName="FacilityOrgName1" label="Facility Org Name1" foreignKey="FacilityOrg" />
+    <column name="OrgName1" fieldName="FacilityOrgName1" label="Organization Name" foreignKey="FacilityOrg" />
+    <column name="FacilityID" fieldName="FacilityID" label="Facility ID" aliasColumnName="FacilityName" aliasForeignKey="Facility" />
+    <column name="AddressId" fieldName="AddressID" label="Address Id" aliasColumnName="Address1" aliasForeignKey="Address" />
   </columns>
 </dataModel>

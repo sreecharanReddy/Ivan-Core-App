@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<dataModel baseSchema="core" baseTable="Facility" alias="Facility" created="2018-08-15T16:59:03" modified="2018-08-15T21:30:42" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+<dataModel baseSchema="core" baseTable="Facility" alias="Facility" created="2018-08-15T16:59:03" modified="2018-08-15T22:24:07" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
   <foreignKeys>
     <foreignKey id="Address" parentTableSchema="core" parentTableName="Address" x="311" y="20">
       <foreignKeyColumn columnName="AddressID" parentColumnName="AddressID" />
@@ -17,7 +17,9 @@
     <column name="InactiveDate" fieldName="InactiveDate" label="Inactive Date" />
     <column name="DBAName" fieldName="Dbaname" label="DBA Name" />
     <column name="Contact" fieldName="Contact" label="Contact" />
-    <column name="Address1" fieldName="Address1" label="Address Address1" foreignKey="Address" />
-    <column name="OrgName1" fieldName="OrgName1" label="Org Name1" foreignKey="Org" />
+    <column name="Address1" fieldName="Address1" label="Address" foreignKey="Address" />
+    <column name="OrgName1" fieldName="OrgName1" label="Organization Name" foreignKey="Org" />
+    <column name="OrgID" fieldName="OrgID" label="Org ID" aliasForeignKey="Org" aliasColumnName="OrgName1" />
+    <column name="AddressID" fieldName="AddressID" label="Address ID" aliasForeignKey="Address" aliasColumnName="Address1" />
   </columns>
 </dataModel>

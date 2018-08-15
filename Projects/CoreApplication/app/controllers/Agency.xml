@@ -16,10 +16,10 @@ select
 	,"Agency"."CreatedBy" "CreatedBy"
 	,"Agency"."CreationDate" "CreationDate"
 	,"Agency"."ModificationDate" "ModificationDate"
-	,"Agency"."AddressId" "AddressID"
-	,"Agency"."FacilityID" "FacilityID"
 	,"Facility"."FacilityName" "FacilityName"
 	,"FacilityOrg"."OrgName1" "FacilityOrgName1"
+	,"Agency"."FacilityID" "FacilityID"
+	,"Agency"."AddressId" "AddressID"
 from "core"."Agency" "Agency"
 	left join "core"."Address" "Address" on "Agency"."AddressId" = "Address"."AddressID"
 	left join "core"."Facility" "Facility" on "Agency"."FacilityID" = "Facility"."FacilityID"
@@ -46,14 +46,14 @@ from "core"."Agency" "Agency"
     <field name="CreatedBy" type="String" label="Created By" length="50" />
     <field name="CreationDate" type="DateTime" dataFormatString="g" label="Creation Date" />
     <field name="ModificationDate" type="DateTime" dataFormatString="g" label="Modification Date" />
-    <field name="AddressID" type="Int32" label="Address Id">
-      <items style="Lookup" dataController="Address" newDataView="createForm1" dataValueField="AddressID" dataTextField="Address1" />
-    </field>
+    <field name="FacilityName" type="String" readOnly="true" label="Facility Name" length="100" />
+    <field name="FacilityOrgName1" type="String" readOnly="true" label="Organization Name" length="50" />
     <field name="FacilityID" type="Int32" label="Facility ID">
       <items style="Lookup" dataController="Facility" newDataView="createForm1" dataValueField="FacilityID" dataTextField="FacilityName" copy="FacilityOrgName1=OrgName1" />
     </field>
-    <field name="FacilityName" type="String" readOnly="true" label="Facility Name" length="100" />
-    <field name="FacilityOrgName1" type="String" readOnly="true" label="Facility Org Name1" length="50" />
+    <field name="AddressID" type="Int32" label="Address Id">
+      <items style="Lookup" dataController="Address" newDataView="createForm1" dataValueField="AddressID" dataTextField="Address1" />
+    </field>
   </fields>
   <views>
     <view id="grid1" type="Grid" commandId="command1" label="Agency">
@@ -69,9 +69,9 @@ from "core"."Agency" "Agency"
         <dataField fieldName="CreatedBy" columns="50" />
         <dataField fieldName="CreationDate" columns="20" />
         <dataField fieldName="ModificationDate" columns="20" />
-        <dataField fieldName="AddressID" aliasFieldName="Address1" />
-        <dataField fieldName="FacilityID" aliasFieldName="FacilityName" />
         <dataField fieldName="FacilityOrgName1" columns="50" />
+        <dataField fieldName="FacilityID" aliasFieldName="FacilityName" />
+        <dataField fieldName="AddressID" aliasFieldName="Address1" />
       </dataFields>
     </view>
     <view id="editForm1" type="Form" commandId="command1" label="Review Agency">
@@ -90,9 +90,9 @@ from "core"."Agency" "Agency"
             <dataField fieldName="CreatedBy" columns="50" />
             <dataField fieldName="CreationDate" columns="20" />
             <dataField fieldName="ModificationDate" columns="20" />
-            <dataField fieldName="AddressID" aliasFieldName="Address1" />
-            <dataField fieldName="FacilityID" aliasFieldName="FacilityName" />
             <dataField fieldName="FacilityOrgName1" columns="50" />
+            <dataField fieldName="FacilityID" aliasFieldName="FacilityName" />
+            <dataField fieldName="AddressID" aliasFieldName="Address1" />
           </dataFields>
         </category>
       </categories>
@@ -113,9 +113,9 @@ from "core"."Agency" "Agency"
             <dataField fieldName="CreatedBy" columns="50" />
             <dataField fieldName="CreationDate" columns="20" />
             <dataField fieldName="ModificationDate" columns="20" />
-            <dataField fieldName="AddressID" aliasFieldName="Address1" />
-            <dataField fieldName="FacilityID" aliasFieldName="FacilityName" />
             <dataField fieldName="FacilityOrgName1" columns="50" />
+            <dataField fieldName="FacilityID" aliasFieldName="FacilityName" />
+            <dataField fieldName="AddressID" aliasFieldName="Address1" />
           </dataFields>
         </category>
       </categories>

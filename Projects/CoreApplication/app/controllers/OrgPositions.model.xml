@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="core" baseTable="OrgPositions" alias="OrgPositions" created="2018-08-15T16:57:51" modified="2018-08-15T21:26:12" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="PositionName" fieldName="PositionName" label="Position Name" />
+    <column name="PositionID" fieldName="PositionID" label="Position ID" />
+  </columns>
+</dataModel>

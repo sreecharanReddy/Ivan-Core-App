@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="core" baseTable="Address" alias="Address" created="2018-08-15T16:58:21" modified="2018-08-15T17:02:07" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="Address1" fieldName="Address1" label="Address1" />
+    <column name="Address2" fieldName="Address2" label="Address2" />
+    <column name="BarrioBoroughSub" fieldName="BarrioBoroughSub" label="Barrio Borough Sub" />
+    <column name="City" fieldName="City" label="City" />
+    <column name="State" fieldName="State" label="State" />
+    <column name="Country" fieldName="Country" label="Country" />
+    <column name="PostalCode" fieldName="PostalCode" label="Postal Code" />
+    <column name="AddressID" fieldName="AddressID" label="Address ID" />
+  </columns>
+</dataModel>

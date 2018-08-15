@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="core" baseTable="PersonType" alias="PersonType" created="2018-08-15T16:58:30" modified="2018-08-15T17:02:02" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="TypeName" fieldName="TypeName" label="Type Name" />
+    <column name="TypeId" fieldName="TypeId" label="Type Id" />
+  </columns>
+</dataModel>

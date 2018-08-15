@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="core" baseTable="SalaryPeriod" alias="SalaryPeriod" created="2018-08-15T21:42:36" modified="2018-08-15T21:42:43" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="Id" fieldName="ID" label="Id" />
+    <column name="Period" fieldName="Period" label="Period" />
+  </columns>
+</dataModel>

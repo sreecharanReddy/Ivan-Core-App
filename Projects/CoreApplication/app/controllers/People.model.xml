@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="core" baseTable="People" alias="People" created="2018-08-15T16:49:20" modified="2018-08-15T21:25:45" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Position" parentTableSchema="core" parentTableName="OrgPositions" x="412" y="20">
+      <foreignKeyColumn columnName="PositionID" parentColumnName="PositionID" />
+    </foreignKey>
+    <foreignKey id="Manager" parentTableSchema="core" parentTableName="People" x="412" y="160">
+      <foreignKeyColumn columnName="ManagerID" parentColumnName="PersonId" />
+      <foreignKeyColumn columnName="SalaryPeriod" parentColumnName="PositionID" />
+    </foreignKey>
+    <foreignKey id="Communication" parentTableSchema="core" parentTableName="Communication" x="412" y="484">
+      <foreignKeyColumn columnName="CommunicationID" parentColumnName="CommunicationID" />
+    </foreignKey>
+    <foreignKey id="Facility" parentTableSchema="core" parentTableName="Facility" x="683" y="583">
+      <foreignKeyColumn columnName="FacilityID" parentColumnName="FacilityID" />
+    </foreignKey>
+    <foreignKey id="Address" parentTableSchema="core" parentTableName="Address" x="200" y="794">
+      <foreignKeyColumn columnName="AddressID" parentColumnName="AddressID" />
+    </foreignKey>
+    <foreignKey id="PersonType" parentTableSchema="core" parentTableName="PersonType" x="774" y="20">
+      <foreignKeyColumn columnName="PersonTypeId" parentColumnName="TypeId" />
+    </foreignKey>
+    <foreignKey id="Department" parentTableSchema="core" parentTableName="Department" x="774" y="160">
+      <foreignKeyColumn columnName="DepartmentId" parentColumnName="DeptId" />
+    </foreignKey>
+    <foreignKey id="Organization" parentTableSchema="core" parentTableName="Organization" x="1000" y="480" baseForeignKey="Facility">
+      <foreignKeyColumn columnName="OrgID" parentColumnName="OrgID" />
+    </foreignKey>
+    <foreignKey id="SalaryPeriod" parentTableSchema="core" parentTableName="SalaryPeriod" x="821" y="316">
+      <foreignKeyColumn columnName="SalaryPeriod" parentColumnName="Id" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="PersonId" fieldName="PersonID" label="Person Id" />
+    <column name="FirstName" fieldName="FirstName" label="First Name" />
+    <column name="MiddleName" fieldName="MiddleName" label="Middle Name" />
+    <column name="LastName" fieldName="LastName" label="Last Name" />
+    <column name="LastName2" fieldName="LastName2" label="Last Name 2" />
+    <column name="AliasName" fieldName="AliasName" label="Alias Name" />
+    <column name="TypeName" fieldName="PersonTypeName" label="Relation" foreignKey="PersonType" />
+    <column name="PositionName" fieldName="PositionName" label="Position" foreignKey="Position" />
+    <column name="FirstName" fieldName="ManagerFirstName" label="Manager First Name" foreignKey="Manager" />
+    <column name="FacilityName" fieldName="FacilityName" label="Facility Name" foreignKey="Facility" />
+    <column name="OrgName1" fieldName="OrganizationOrgName1" label="Organization Name" foreignKey="Organization" />
+    <column name="EIN" fieldName="OrganizationEin" label="Organization Ein" foreignKey="Organization" />
+    <column name="Salary" fieldName="Salary" label="Salary" format="c" />
+    <column name="SalaryPeriod" fieldName="SalaryPeriod" label="Salary Period" aliasColumnName="Period" aliasForeignKey="SalaryPeriod" />
+    <column name="Period" fieldName="Period" label="Salary Period" foreignKey="SalaryPeriod" />
+    <column name="Phone" fieldName="CommunicationPhone" label="Phone" foreignKey="Communication" />
+    <column name="PhoneType" fieldName="CommunicationPhoneType" label="Phone Type" foreignKey="Communication" />
+    <column name="email" fieldName="CommunicationEmail" label="Communication Email" foreignKey="Communication" />
+    <column name="EmergencyContactPersonName" fieldName="EmergencyContactPersonName" label="Emergency Contact Person Name" />
+    <column name="EmergencyContactPersonRelation" fieldName="EmergencyContactPersonRelation" label="Emergency Contact Person Relation" />
+    <column name="EmergencyContactPersonPhone" fieldName="EmergencyContactPersonPhone" label="Emergency Contact Person Phone" />
+    <column name="Address1" fieldName="Address1" label="Address" foreignKey="Address" />
+    <column name="DeptName" fieldName="DepartmentDeptName" label="DepartmentName" foreignKey="Department" />
+    <column name="PositionID" fieldName="PositionID" label="Position ID" />
+    <column name="CommunicationID" fieldName="CommunicationID" label="Communication ID" />
+    <column name="FacilityID" fieldName="FacilityID" label="Facility ID" />
+    <column name="AddressID" fieldName="AddressID" label="Address ID" />
+    <column name="PersonTypeId" fieldName="PersonTypeId" label="Person Type Id" />
+    <column name="DepartmentId" fieldName="DepartmentId" label="Department Id" />
+    <column name="ManagerID" fieldName="ManagerID" label="Manager ID" />
+  </columns>
+</dataModel>

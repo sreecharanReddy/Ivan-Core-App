@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="core" baseTable="Agency" alias="Agency" created="2018-08-15T21:42:46" modified="2018-08-15T21:44:39" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Address" parentTableSchema="core" parentTableName="Address" x="325" y="20">
+      <foreignKeyColumn columnName="AddressId" parentColumnName="AddressID" />
+    </foreignKey>
+    <foreignKey id="Facility" parentTableSchema="core" parentTableName="Facility" x="325" y="181">
+      <foreignKeyColumn columnName="FacilityID" parentColumnName="FacilityID" />
+    </foreignKey>
+    <foreignKey id="FacilityOrg" parentTableSchema="core" parentTableName="Organization" baseForeignKey="Facility" x="606" y="181">
+      <foreignKeyColumn columnName="OrgID" parentColumnName="OrgID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="AgencyId" fieldName="AgencyID" label="Agency Id" />
+    <column name="AgencyNumber" fieldName="AgencyNumber" label="Agency Number" />
+    <column name="ContactName" fieldName="ContactName" label="Contact Name" />
+    <column name="ContactInfo" fieldName="ContactInfo" label="Contact Info" />
+    <column name="Address1" fieldName="Address1" label="Agency Address" foreignKey="Address" />
+    <column name="Website" fieldName="Website" label="Website" />
+    <column name="UserName" fieldName="UserName" label="User Name" />
+    <column name="Password" fieldName="Password" label="Password" />
+    <column name="AgencyLevel" fieldName="AgencyLevel" label="Agency Level" />
+    <column name="CreatedBy" fieldName="CreatedBy" label="Created By" />
+    <column name="CreationDate" fieldName="CreationDate" label="Creation Date" format="g" />
+    <column name="ModificationDate" fieldName="ModificationDate" label="Modification Date" format="g" />
+    <column name="AddressId" fieldName="AddressID" label="Address Id" aliasColumnName="Address1" aliasForeignKey="Address" />
+    <column name="FacilityID" fieldName="FacilityID" label="Facility ID" aliasColumnName="FacilityName" aliasForeignKey="Facility" />
+    <column name="FacilityName" fieldName="FacilityName" label="Facility Name" foreignKey="Facility" />
+    <column name="OrgName1" fieldName="FacilityOrgName1" label="Facility Org Name1" foreignKey="FacilityOrg" />
+  </columns>
+</dataModel>

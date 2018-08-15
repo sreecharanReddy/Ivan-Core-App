@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="core" baseTable="Department" alias="Department" created="2018-08-15T16:58:56" modified="2018-08-15T17:01:50" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="DeptName" fieldName="DeptName" label="Dept Name" />
+    <column name="DeptId" fieldName="DeptId" label="Dept Id" />
+  </columns>
+</dataModel>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="core" baseTable="Organization" alias="Organization" created="2018-08-15T19:26:06" modified="2018-08-15T21:25:59" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="OrgID" fieldName="OrgID" label="Org ID" />
+    <column name="OrgName1" fieldName="OrgName1" label="Org Name1" />
+    <column name="OrgName2" fieldName="OrgName2" label="Org Name2" />
+    <column name="OrgAlias" fieldName="OrgAlias" label="Org Alias" />
+    <column name="EIN" fieldName="Ein" label="Ein" />
+    <column name="LegalName" fieldName="LegalName" label="Legal Name" />
+    <column name="Contact" fieldName="Contact" label="Contact" />
+  </columns>
+</dataModel>

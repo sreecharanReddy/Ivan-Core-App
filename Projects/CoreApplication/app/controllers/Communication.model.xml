@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="core" baseTable="Communication" alias="Communication" created="2018-08-15T16:58:49" modified="2018-08-15T17:01:57" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys />
+  <columns>
+    <column name="Phone" fieldName="Phone" label="Phone" />
+    <column name="PhoneType" fieldName="PhoneType" label="Phone Type" />
+    <column name="email" fieldName="Email" label="Email" />
+    <column name="SoftName" fieldName="SoftName" label="Soft Name" />
+    <column name="WhatsApp" fieldName="WhatsApp" label="Whats App" />
+    <column name="FB" fieldName="Fb" label="Fb" />
+    <column name="LinkedIn" fieldName="LinkedIn" label="Linked In" />
+    <column name="CommunicationID" fieldName="CommunicationID" label="Communication ID" />
+  </columns>
+</dataModel>

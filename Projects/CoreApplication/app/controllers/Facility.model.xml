@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="core" baseTable="Facility" alias="Facility" created="2018-08-15T16:59:03" modified="2018-08-15T21:30:42" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Address" parentTableSchema="core" parentTableName="Address" x="311" y="20">
+      <foreignKeyColumn columnName="AddressID" parentColumnName="AddressID" />
+    </foreignKey>
+    <foreignKey id="Org" parentTableSchema="core" parentTableName="Organization" x="311" y="181">
+      <foreignKeyColumn columnName="OrgID" parentColumnName="OrgID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="FacilityID" fieldName="FacilityID" label="Facility ID" />
+    <column name="FacilityName" fieldName="FacilityName" label="Facility Name" />
+    <column name="BusinessUnit" fieldName="BusinessUnit" label="Business Unit" />
+    <column name="CreationDate" fieldName="CreationDate" label="Creation Date" />
+    <column name="ActivationDate" fieldName="ActivationDate" label="Activation Date" />
+    <column name="InactiveDate" fieldName="InactiveDate" label="Inactive Date" />
+    <column name="DBAName" fieldName="Dbaname" label="DBA Name" />
+    <column name="Contact" fieldName="Contact" label="Contact" />
+    <column name="Address1" fieldName="Address1" label="Address Address1" foreignKey="Address" />
+    <column name="OrgName1" fieldName="OrgName1" label="Org Name1" foreignKey="Org" />
+  </columns>
+</dataModel>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<dataModel baseSchema="core" baseTable="People" alias="People" created="2018-08-15T16:49:20" modified="2018-08-15T22:55:22" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+<dataModel baseSchema="core" baseTable="People" alias="People" created="2018-08-15T16:49:20" modified="2018-08-24T22:38:21" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
   <foreignKeys>
     <foreignKey id="Manager" parentTableSchema="core" parentTableName="People" x="412" y="160">
       <foreignKeyColumn columnName="ManagerID" parentColumnName="PersonId" />
@@ -51,7 +51,6 @@
     <column name="EmergencyContactPersonRelation" fieldName="EmergencyContactPersonRelation" label="Emergency Contact Person Relation" />
     <column name="EmergencyContactPersonPhone" fieldName="EmergencyContactPersonPhone" label="Emergency Contact Person Phone" />
     <column name="Period" fieldName="Period" label="Salary Period" foreignKey="SalaryPeriod" />
-    <column name="SalaryPeriod" fieldName="SalaryPeriod" label="PeriodID" aliasColumnName="Period" aliasForeignKey="SalaryPeriod" />
     <column name="Address1" fieldName="Address1" label="Address" foreignKey="Address" />
     <column name="DeptName" fieldName="DepartmentDeptName" label="DepartmentName" foreignKey="Department" />
     <column name="PositionID" fieldName="PositionID" label="Position ID" aliasColumnName="PositionName" aliasForeignKey="OrgPositions" />
@@ -61,5 +60,6 @@
     <column name="PersonTypeId" fieldName="PersonTypeId" label="Person Type Id" aliasForeignKey="PersonType" aliasColumnName="TypeName" />
     <column name="DepartmentId" fieldName="DepartmentId" label="Department Id" aliasForeignKey="Department" aliasColumnName="DeptName" />
     <column name="ManagerID" fieldName="ManagerID" label="Manager ID" aliasForeignKey="Manager" aliasColumnName="FirstName" />
+    <column name="SalaryPeriod" fieldName="SalaryPeriod" label="PeriodID" aliasColumnName="Period" aliasForeignKey="SalaryPeriod" />
   </columns>
 </dataModel>

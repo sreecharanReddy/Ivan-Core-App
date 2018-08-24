@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
+  <siteMapNode title="^SiteHome^Home^SiteHome^" description="" url="~/index.html">
+    <siteMapNode title="^HomePath^Home^HomePath^" description="^HomeDesc^Application home page^HomeDesc^" url="~/pages/home" cssClass="Wide" />
+    <siteMapNode title="Address" description="View Address" url="~/pages/address" />
+    <siteMapNode title="Org Positions" description="View Org Positions" url="~/pages/org-positions" />
+    <siteMapNode title="Department" description="View Department" url="~/pages/department" />
+    <siteMapNode title="Organization" description="View Organization" url="~/pages/organization" />
+    <siteMapNode title="Person Type" description="View Person Type" url="~/pages/person-type" />
+    <siteMapNode title="Salary Period" description="View Salary Period" url="~/pages/salary-period" />
+    <siteMapNode title="Communication" description="View Communication" url="~/pages/communication" />
+    <siteMapNode title="Facility" description="View Facility" url="~/pages/facility" />
+    <siteMapNode title="People" description="View People" url="~/pages/people" />
+  </siteMapNode>
+</siteMap>

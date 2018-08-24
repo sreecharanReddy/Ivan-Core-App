@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dataModel baseSchema="core" baseTable="Facility" alias="Facility" created="2018-08-24T22:45:49" modified="2018-08-24T22:58:50" x="20" y="20" xmlns="urn:schemas-codeontime-com:data-model">
+  <foreignKeys>
+    <foreignKey id="Address" parentTableSchema="core" parentTableName="Address" x="311" y="20">
+      <foreignKeyColumn columnName="AddressID" parentColumnName="AddressID" />
+    </foreignKey>
+    <foreignKey id="Org" parentTableSchema="core" parentTableName="Organization" x="311" y="181">
+      <foreignKeyColumn columnName="OrgID" parentColumnName="OrgID" />
+    </foreignKey>
+  </foreignKeys>
+  <columns>
+    <column name="FacilityID" fieldName="FacilityID" label="Facility ID" />
+    <column name="FacilityName" fieldName="FacilityName" label="Facility Name" />
+    <column name="BusinessUnit" fieldName="BusinessUnit" label="Business Unit" />
+    <column name="CreationDate" fieldName="CreationDate" label="Creation Date" />
+    <column name="ActivationDate" fieldName="ActivationDate" label="Activation Date" />
+    <column name="InactiveDate" fieldName="InactiveDate" label="Inactive Date" />
+    <column name="DBAName" fieldName="Dbaname" label="DBA Name" />
+    <column name="Contact" fieldName="Contact" label="Contact" />
+    <column name="Address1" fieldName="Address1" label="Address" foreignKey="Address" />
+    <column name="AddressID" fieldName="AddressID" label="Address ID" aliasColumnName="Address1" aliasForeignKey="Address" />
+    <column name="OrgName1" fieldName="OrgName1" label="Organization Name" foreignKey="Org" />
+    <column name="EIN" fieldName="OrgEin" label="Org Ein" foreignKey="Org" />
+    <column name="OrgID" fieldName="OrgID" label="Org ID" aliasColumnName="OrgName1" aliasForeignKey="Org" />
+  </columns>
+</dataModel>

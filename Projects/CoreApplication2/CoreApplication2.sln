@@ -1,0 +1,13 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CoreApplication2", "app\", "C62B133A-2015-4A7D-A5B8-F901FB23D30D"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code On Time Items", "Code On Time Items", "{421F87EE-25DF-4CF6-97B4-20F9EAA12D33}"
+	ProjectSection(SolutionItems) = preProject
+		ClientLibrary.en-US.txt = ClientLibrary.en-US.txt
+		DataAquarium.Project.xml = DataAquarium.Project.xml
+		DataAquarium.Version.xml = DataAquarium.Version.xml
+	EndProjectSection
+EndProject

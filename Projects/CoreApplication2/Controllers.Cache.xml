@@ -1,17 +1,17 @@
-<dataControllerCollection snapshot="false" xmlns="urn:schemas-codeontime-com:data-aquarium">
+<dataControllerCollection snapshot="true" xmlns="urn:schemas-codeontime-com:data-aquarium">
   <dataController name="Address" conflictDetection="overwriteChanges" label="Address" nativeSchema="core" nativeTableName="Address">
     <commands>
       <command id="command1" type="Text">
         <text>
 select
-	"Address"."Address1" "Address1"
+	"Address"."AddressID" "AddressID"
+	,"Address"."Address1" "Address1"
 	,"Address"."Address2" "Address2"
 	,"Address"."BarrioBoroughSub" "BarrioBoroughSub"
 	,"Address"."City" "City"
 	,"Address"."State" "State"
 	,"Address"."Country" "Country"
 	,"Address"."PostalCode" "PostalCode"
-	,"Address"."AddressID" "AddressID"
 from "core"."Address" "Address"
 </text>
       </command>
@@ -23,6 +23,7 @@ from "core"."Address" "Address"
       </command>
     </commands>
     <fields>
+      <field name="AddressID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Address ID" readOnly="true" />
       <field name="Address1" type="String" label="Address1" length="30" showInSummary="true" />
       <field name="Address2" type="String" label="Address2" length="30" showInSummary="true" />
       <field name="BarrioBoroughSub" type="String" label="Barrio Borough Sub" length="30" showInSummary="true" />
@@ -30,7 +31,6 @@ from "core"."Address" "Address"
       <field name="State" type="String" label="State" length="30" showInSummary="true" />
       <field name="Country" type="String" label="Country" length="30" />
       <field name="PostalCode" type="String" label="Postal Code" length="10" />
-      <field name="AddressID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Address ID" readOnly="true" />
     </fields>
     <views>
       <view id="grid1" type="Grid" commandId="command1" label="Address">
@@ -136,197 +136,19 @@ from "core"."Address" "Address"
       </actionGroup>
     </actions>
   </dataController>
-  <dataController name="Agency" conflictDetection="overwriteChanges" label="Agency" nativeSchema="core" nativeTableName="Agency">
-    <commands>
-      <command id="command1" type="Text">
-        <text>
-select
-	"Agency"."AgencyId" "AgencyID"
-	,"Agency"."AgencyNumber" "AgencyNumber"
-	,"Agency"."ContactName" "ContactName"
-	,"Agency"."ContactInfo" "ContactInfo"
-	,"Address"."Address1" "Address1"
-	,"Agency"."Website" "Website"
-	,"Agency"."UserName" "UserName"
-	,"Agency"."Password" "Password"
-	,"Agency"."AgencyLevel" "AgencyLevel"
-	,"Agency"."CreatedBy" "CreatedBy"
-	,"Agency"."CreationDate" "CreationDate"
-	,"Agency"."ModificationDate" "ModificationDate"
-	,"Facility"."FacilityName" "FacilityName"
-	,"FacilityOrg"."OrgName1" "FacilityOrgName1"
-	,"Agency"."FacilityID" "FacilityID"
-	,"Agency"."AddressId" "AddressID"
-from "core"."Agency" "Agency"
-	left join "core"."Address" "Address" on "Agency"."AddressId" = "Address"."AddressID"
-	left join "core"."Facility" "Facility" on "Agency"."FacilityID" = "Facility"."FacilityID"
-	left join "core"."Organization" "FacilityOrg" on "Facility"."OrgID" = "FacilityOrg"."OrgID"
-</text>
-      </command>
-      <command id="AgencyIdIdentityCommand" type="Text" event="Inserted">
-        <text>select @@identity</text>
-        <output>
-          <fieldOutput fieldName="AgencyID" />
-        </output>
-      </command>
-    </commands>
-    <fields>
-      <field name="AgencyID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Agency Id" readOnly="true" />
-      <field name="AgencyNumber" type="String" label="Agency Number" length="20" showInSummary="true" />
-      <field name="ContactName" type="String" label="Contact Name" length="100" showInSummary="true" />
-      <field name="ContactInfo" type="String" label="Contact Info" length="100" showInSummary="true" />
-      <field name="Address1" type="String" readOnly="true" label="Agency Address" length="30" />
-      <field name="Website" type="String" allowQBE="false" allowSorting="false" label="Website" showInSummary="true" />
-      <field name="UserName" type="String" label="User Name" length="20" showInSummary="true" />
-      <field name="Password" type="String" label="Password" length="30" />
-      <field name="AgencyLevel" type="String" label="Agency Level" length="30" />
-      <field name="CreatedBy" type="String" label="Created By" length="50" />
-      <field name="CreationDate" type="DateTime" dataFormatString="g" label="Creation Date" />
-      <field name="ModificationDate" type="DateTime" dataFormatString="g" label="Modification Date" />
-      <field name="FacilityName" type="String" readOnly="true" label="Facility Name" length="100" />
-      <field name="FacilityOrgName1" type="String" readOnly="true" label="Organization Name" length="50" />
-      <field name="FacilityID" type="Int32" label="Facility ID">
-        <items style="Lookup" dataController="Facility" newDataView="createForm1" dataValueField="FacilityID" dataTextField="FacilityName" copy="FacilityOrgName1=OrgName1" />
-      </field>
-      <field name="AddressID" type="Int32" label="Address Id">
-        <items style="Lookup" dataController="Address" newDataView="createForm1" dataValueField="AddressID" dataTextField="Address1" />
-      </field>
-    </fields>
-    <views>
-      <view id="grid1" type="Grid" commandId="command1" label="Agency">
-        <headerText>$DefaultGridViewDescription</headerText>
-        <dataFields>
-          <dataField fieldName="AgencyNumber" columns="20" />
-          <dataField fieldName="ContactName" />
-          <dataField fieldName="ContactInfo" />
-          <dataField fieldName="Website" rows="5" />
-          <dataField fieldName="UserName" columns="20" />
-          <dataField fieldName="Password" textMode="Password" columns="30" />
-          <dataField fieldName="AgencyLevel" columns="30" />
-          <dataField fieldName="CreatedBy" columns="50" />
-          <dataField fieldName="CreationDate" columns="20" />
-          <dataField fieldName="ModificationDate" columns="20" />
-          <dataField fieldName="FacilityOrgName1" columns="50" />
-          <dataField fieldName="FacilityID" aliasFieldName="FacilityName" />
-          <dataField fieldName="AddressID" aliasFieldName="Address1" />
-        </dataFields>
-      </view>
-      <view id="editForm1" type="Form" commandId="command1" label="Review Agency">
-        <headerText>$DefaultEditViewDescription</headerText>
-        <categories>
-          <category id="c1" headerText="Agency">
-            <description>$DefaultEditDescription</description>
-            <dataFields>
-              <dataField fieldName="AgencyNumber" columns="20" />
-              <dataField fieldName="ContactName" />
-              <dataField fieldName="ContactInfo" />
-              <dataField fieldName="Website" rows="5" />
-              <dataField fieldName="UserName" columns="20" />
-              <dataField fieldName="Password" textMode="Password" columns="30" />
-              <dataField fieldName="AgencyLevel" columns="30" />
-              <dataField fieldName="CreatedBy" columns="50" />
-              <dataField fieldName="CreationDate" columns="20" />
-              <dataField fieldName="ModificationDate" columns="20" />
-              <dataField fieldName="FacilityOrgName1" columns="50" />
-              <dataField fieldName="FacilityID" aliasFieldName="FacilityName" />
-              <dataField fieldName="AddressID" aliasFieldName="Address1" />
-            </dataFields>
-          </category>
-        </categories>
-      </view>
-      <view id="createForm1" type="Form" commandId="command1" label="New Agency">
-        <headerText>$DefaultCreateViewDescription</headerText>
-        <categories>
-          <category id="c1">
-            <description>$DefaultNewDescription</description>
-            <dataFields>
-              <dataField fieldName="AgencyNumber" columns="20" />
-              <dataField fieldName="ContactName" />
-              <dataField fieldName="ContactInfo" />
-              <dataField fieldName="Website" rows="5" />
-              <dataField fieldName="UserName" columns="20" />
-              <dataField fieldName="Password" textMode="Password" columns="30" />
-              <dataField fieldName="AgencyLevel" columns="30" />
-              <dataField fieldName="CreatedBy" columns="50" />
-              <dataField fieldName="CreationDate" columns="20" />
-              <dataField fieldName="ModificationDate" columns="20" />
-              <dataField fieldName="FacilityOrgName1" columns="50" />
-              <dataField fieldName="FacilityID" aliasFieldName="FacilityName" />
-              <dataField fieldName="AddressID" aliasFieldName="Address1" />
-            </dataFields>
-          </category>
-        </categories>
-      </view>
-    </views>
-    <actions>
-      <actionGroup id="ag1" scope="Grid">
-        <action id="a1" commandName="Select" commandArgument="editForm1" />
-        <action id="a2" commandName="Edit" />
-        <action id="a3" commandName="Delete" />
-        <action id="a6" />
-        <action id="a7" commandName="New" commandArgument="grid1" />
-        <action id="a8" commandName="Duplicate" commandArgument="createForm1" />
-      </actionGroup>
-      <actionGroup id="ag2" scope="Form">
-        <action id="a1" commandName="Edit" />
-        <action id="a2" commandName="Delete" />
-        <action id="a3" commandName="Cancel" />
-        <action id="a4" whenLastCommandName="Edit" commandName="Update" commandArgument="Save" />
-        <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
-        <action id="a6" whenLastCommandName="New" commandName="Insert" commandArgument="Save" />
-        <action id="a7" whenLastCommandName="New" commandName="Insert" commandArgument="SaveAndNew" />
-        <action id="a8" whenLastCommandName="New" commandName="Cancel" />
-        <action id="a9" whenLastCommandName="Duplicate" commandName="Insert" />
-        <action id="a10" whenLastCommandName="Duplicate" commandName="Cancel" />
-        <action id="a13" whenLastCommandName="Insert" whenLastCommandArgument="Save" whenView="createForm1" commandName="Select" commandArgument="editForm1" whenClientScript="this.hasDetails()" />
-        <action id="a14" whenLastCommandName="Insert" whenLastCommandArgument="SaveAndNew" commandName="New" commandArgument="createForm1" />
-      </actionGroup>
-      <actionGroup id="ag3" scope="ActionBar" headerText="New" flat="true">
-        <action id="a1" commandName="New" commandArgument="createForm1" cssClass="NewIcon" />
-      </actionGroup>
-      <actionGroup id="ag4" scope="ActionBar" headerText="Edit/Delete" flat="true">
-        <action id="a1" whenKeySelected="true" commandName="Edit" commandArgument="editForm1" cssClass="EditIcon" whenView="grid1" />
-        <action id="a2" whenKeySelected="true" commandName="Delete" cssClass="DeleteIcon" whenView="grid1" />
-      </actionGroup>
-      <actionGroup id="ag5" scope="ActionBar" headerText="Actions">
-        <action id="a1" commandName="ExportCsv" />
-        <action id="a2" />
-        <action id="a3" commandName="ExportRowset" />
-        <action id="a4" commandName="ExportRss" />
-      </actionGroup>
-      <actionGroup id="ag6" scope="ActionBar" headerText="Record">
-        <action id="a1" whenLastCommandName="Edit" commandName="Update" />
-        <action id="a2" whenLastCommandName="Edit" commandName="Cancel" />
-        <action id="a3" whenLastCommandName="New" commandName="Insert" />
-        <action id="a4" whenLastCommandName="New" commandName="Cancel" />
-      </actionGroup>
-      <actionGroup id="ag7" scope="ActionBar" headerText="Report">
-        <action id="a1" commandName="ReportAsPdf" />
-        <action id="a2" commandName="ReportAsImage" />
-        <action id="a3" commandName="ReportAsExcel" />
-        <action id="a4" commandName="ReportAsWord" />
-      </actionGroup>
-      <actionGroup id="ag8" scope="Row">
-        <action id="a4" whenLastCommandName="Edit" commandName="Update" />
-        <action id="a5" whenLastCommandName="Edit" commandName="Cancel" />
-        <action id="a6" whenLastCommandName="New" commandName="Insert" />
-        <action id="a7" whenLastCommandName="New" commandName="Cancel" />
-      </actionGroup>
-    </actions>
-  </dataController>
   <dataController name="Communication" conflictDetection="overwriteChanges" label="Communication" nativeSchema="core" nativeTableName="Communication">
     <commands>
       <command id="command1" type="Text">
         <text>
 select
-	"Communication"."Phone" "Phone"
+	"Communication"."CommunicationID" "CommunicationID"
+	,"Communication"."Phone" "Phone"
 	,"Communication"."PhoneType" "PhoneType"
 	,"Communication"."email" "Email"
 	,"Communication"."SoftName" "SoftName"
 	,"Communication"."WhatsApp" "WhatsApp"
 	,"Communication"."FB" "Fb"
 	,"Communication"."LinkedIn" "LinkedIn"
-	,"Communication"."CommunicationID" "CommunicationID"
 from "core"."Communication" "Communication"
 </text>
       </command>
@@ -338,6 +160,7 @@ from "core"."Communication" "Communication"
       </command>
     </commands>
     <fields>
+      <field name="CommunicationID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Communication ID" readOnly="true" />
       <field name="Phone" type="String" label="Phone" length="20" showInSummary="true" />
       <field name="PhoneType" type="String" label="Phone Type" length="20" showInSummary="true" />
       <field name="Email" type="String" label="Email" length="50" showInSummary="true" />
@@ -345,7 +168,6 @@ from "core"."Communication" "Communication"
       <field name="WhatsApp" type="String" label="Whats App" length="20" showInSummary="true" />
       <field name="Fb" type="String" label="Fb" length="50" />
       <field name="LinkedIn" type="String" label="Linked In" length="50" />
-      <field name="CommunicationID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Communication ID" readOnly="true" />
     </fields>
     <views>
       <view id="grid1" type="Grid" commandId="command1" label="Communication">
@@ -456,21 +278,21 @@ from "core"."Communication" "Communication"
       <command id="command1" type="Text">
         <text>
 select
-	"Department"."DeptName" "DeptName"
-	,"Department"."DeptId" "DeptId"
+	"Department"."DeptId" "DeptID"
+	,"Department"."DeptName" "DeptName"
 from "core"."Department" "Department"
 </text>
       </command>
       <command id="DeptIdIdentityCommand" type="Text" event="Inserted">
         <text>select @@identity</text>
         <output>
-          <fieldOutput fieldName="DeptId" />
+          <fieldOutput fieldName="DeptID" />
         </output>
       </command>
     </commands>
     <fields>
+      <field name="DeptID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Dept Id" readOnly="true" />
       <field name="DeptName" type="String" label="Dept Name" length="100" showInSummary="true" />
-      <field name="DeptId" type="Int32" allowNulls="false" isPrimaryKey="true" label="Dept Id" readOnly="true" />
     </fields>
     <views>
       <view id="grid1" type="Grid" commandId="command1" label="Department">
@@ -572,9 +394,10 @@ select
 	,"Facility"."DBAName" "Dbaname"
 	,"Facility"."Contact" "Contact"
 	,"Address"."Address1" "Address1"
-	,"Org"."OrgName1" "OrgName1"
-	,"Facility"."OrgID" "OrgID"
 	,"Facility"."AddressID" "AddressID"
+	,"Org"."OrgName1" "OrgName1"
+	,"Org"."EIN" "OrgEin"
+	,"Facility"."OrgID" "OrgID"
 from "core"."Facility" "Facility"
 	left join "core"."Address" "Address" on "Facility"."AddressID" = "Address"."AddressID"
 	left join "core"."Organization" "Org" on "Facility"."OrgID" = "Org"."OrgID"
@@ -597,12 +420,13 @@ from "core"."Facility" "Facility"
       <field name="Dbaname" type="String" label="DBA Name" length="30" />
       <field name="Contact" type="String" label="Contact" length="30" />
       <field name="Address1" type="String" readOnly="true" label="Address" length="30" />
-      <field name="OrgName1" type="String" readOnly="true" label="Organization Name" length="50" />
-      <field name="OrgID" type="Int32" label="Org ID">
-        <items style="Lookup" dataController="Organization" newDataView="createForm1" dataValueField="OrgID" dataTextField="OrgName1" />
-      </field>
       <field name="AddressID" type="Int32" label="Address ID">
         <items style="Lookup" dataController="Address" newDataView="createForm1" dataValueField="AddressID" dataTextField="Address1" />
+      </field>
+      <field name="OrgName1" type="String" readOnly="true" label="Organization Name" length="50" />
+      <field name="OrgEin" type="String" readOnly="true" label="Org Ein" length="20" />
+      <field name="OrgID" type="Int32" label="Org ID">
+        <items style="Lookup" dataController="Organization" newDataView="createForm1" dataValueField="OrgID" dataTextField="OrgName1" copy="OrgEin=Ein" />
       </field>
     </fields>
     <views>
@@ -616,8 +440,9 @@ from "core"."Facility" "Facility"
           <dataField fieldName="InactiveDate" columns="10" />
           <dataField fieldName="Dbaname" columns="30" />
           <dataField fieldName="Contact" columns="30" />
-          <dataField fieldName="OrgID" aliasFieldName="OrgName1" />
           <dataField fieldName="AddressID" aliasFieldName="Address1" />
+          <dataField fieldName="OrgEin" columns="20" />
+          <dataField fieldName="OrgID" aliasFieldName="OrgName1" />
         </dataFields>
       </view>
       <view id="editForm1" type="Form" commandId="command1" label="Review Facility">
@@ -633,8 +458,9 @@ from "core"."Facility" "Facility"
               <dataField fieldName="InactiveDate" columns="10" />
               <dataField fieldName="Dbaname" columns="30" />
               <dataField fieldName="Contact" columns="30" />
-              <dataField fieldName="OrgID" aliasFieldName="OrgName1" />
               <dataField fieldName="AddressID" aliasFieldName="Address1" />
+              <dataField fieldName="OrgEin" columns="20" />
+              <dataField fieldName="OrgID" aliasFieldName="OrgName1" />
             </dataFields>
           </category>
         </categories>
@@ -652,8 +478,9 @@ from "core"."Facility" "Facility"
               <dataField fieldName="InactiveDate" columns="10" />
               <dataField fieldName="Dbaname" columns="30" />
               <dataField fieldName="Contact" columns="30" />
-              <dataField fieldName="OrgID" aliasFieldName="OrgName1" />
               <dataField fieldName="AddressID" aliasFieldName="Address1" />
+              <dataField fieldName="OrgEin" columns="20" />
+              <dataField fieldName="OrgID" aliasFieldName="OrgName1" />
             </dataFields>
           </category>
         </categories>
@@ -852,8 +679,8 @@ from "core"."Organization" "Organization"
       <command id="command1" type="Text">
         <text>
 select
-	"OrgPositions"."PositionName" "PositionName"
-	,"OrgPositions"."PositionID" "PositionID"
+	"OrgPositions"."PositionID" "PositionID"
+	,"OrgPositions"."PositionName" "PositionName"
 from "core"."OrgPositions" "OrgPositions"
 </text>
       </command>
@@ -865,8 +692,8 @@ from "core"."OrgPositions" "OrgPositions"
       </command>
     </commands>
     <fields>
-      <field name="PositionName" type="String" label="Position Name" length="50" showInSummary="true" />
       <field name="PositionID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Position ID" readOnly="true" />
+      <field name="PositionName" type="String" label="Position Name" length="50" showInSummary="true" />
     </fields>
     <views>
       <view id="grid1" type="Grid" commandId="command1" label="Org Positions">
@@ -965,41 +792,38 @@ select
 	,"People"."LastName" "LastName"
 	,"People"."LastName2" "LastName2"
 	,"People"."AliasName" "AliasName"
-	,"PersonType"."TypeName" "PersonTypeName"
+	,"People"."PositionID" "PositionID"
+	,"Position"."PositionName" "PositionName"
+	,"People"."ManagerID" "ManagerID"
 	,"Manager"."FirstName" "ManagerFirstName"
-	,"Facility"."FacilityName" "FacilityName"
-	,"Organization"."OrgName1" "OrganizationOrgName1"
-	,"Organization"."EIN" "OrganizationEin"
 	,"People"."Salary" "Salary"
-	,"OrgPositions"."PositionName" "OrgPositionsPositionName"
-	,"Communication"."Phone" "CommunicationPhone"
-	,"Communication"."PhoneType" "CommunicationPhoneType"
-	,"Communication"."email" "CommunicationEmail"
+	,"People"."SalaryPeriod" "SalaryPeriod"
+	,"SalaryPeriod"."Period" "SalaryPeriod1"
 	,"People"."EmergencyContactPersonName" "EmergencyContactPersonName"
 	,"People"."EmergencyContactPersonRelation" "EmergencyContactPersonRelation"
 	,"People"."EmergencyContactPersonPhone" "EmergencyContactPersonPhone"
-	,"SalaryPeriod"."Period" "Period"
-	,"Address"."Address1" "Address1"
-	,"Department"."DeptName" "DepartmentDeptName"
-	,"People"."PositionID" "PositionID"
 	,"People"."CommunicationID" "CommunicationID"
+	,"Communication"."Phone" "CommunicationPhone"
 	,"People"."FacilityID" "FacilityID"
+	,"Facility"."FacilityName" "FacilityName"
 	,"People"."AddressID" "AddressID"
-	,"People"."PersonTypeId" "PersonTypeId"
-	,"People"."DepartmentId" "DepartmentId"
-	,"People"."ManagerID" "ManagerID"
-	,"People"."SalaryPeriod" "SalaryPeriod"
+	,"Address"."Address1" "Address1"
+	,"People"."PersonTypeId" "PersonTypeID"
+	,"PersonType"."TypeName" "PersonTypeName"
+	,"People"."DepartmentId" "DepartmentID"
+	,"Department"."DeptName" "DepartmentDeptName"
+	,"Organization"."OrgName1" "OrganizationOrgName1"
+	,"Organization"."EIN" "OrganizationEin"
 from "core"."People" "People"
+	left join "core"."OrgPositions" "Position" on "People"."PositionID" = "Position"."PositionID"
 	left join "core"."People" "Manager" on "People"."ManagerID" = "Manager"."PersonId"
- and "People"."SalaryPeriod" = "Manager"."PositionID"
+	left join "core"."SalaryPeriod" "SalaryPeriod" on "People"."SalaryPeriod" = "SalaryPeriod"."Id"
 	left join "core"."Communication" "Communication" on "People"."CommunicationID" = "Communication"."CommunicationID"
 	left join "core"."Facility" "Facility" on "People"."FacilityID" = "Facility"."FacilityID"
 	left join "core"."Organization" "Organization" on "Facility"."OrgID" = "Organization"."OrgID"
 	left join "core"."Address" "Address" on "People"."AddressID" = "Address"."AddressID"
 	left join "core"."PersonType" "PersonType" on "People"."PersonTypeId" = "PersonType"."TypeId"
 	left join "core"."Department" "Department" on "People"."DepartmentId" = "Department"."DeptId"
-	left join "core"."SalaryPeriod" "SalaryPeriod" on "People"."SalaryPeriod" = "SalaryPeriod"."Id"
-	left join "core"."OrgPositions" "OrgPositions" on "People"."PositionID" = "OrgPositions"."PositionID"
 </text>
       </command>
       <command id="PersonIdIdentityCommand" type="Text" event="Inserted">
@@ -1014,46 +838,46 @@ from "core"."People" "People"
       <field name="FirstName" type="String" label="First Name" length="20" showInSummary="true" />
       <field name="MiddleName" type="String" label="Middle Name" length="20" showInSummary="true" />
       <field name="LastName" type="String" label="Last Name" length="20" showInSummary="true" />
-      <field name="LastName2" type="String" label="Last Name 2" length="20" showInSummary="true" />
+      <field name="LastName2" type="String" label="Last Name2" length="20" showInSummary="true" />
       <field name="AliasName" type="String" label="Alias Name" length="40" showInSummary="true" />
-      <field name="PersonTypeName" type="String" readOnly="true" label="Relation" length="30" />
-      <field name="ManagerFirstName" type="String" readOnly="true" label="Manager First Name" length="20" />
-      <field name="FacilityName" type="String" readOnly="true" label="Facility Name" length="100" />
-      <field name="OrganizationOrgName1" type="String" readOnly="true" label="Organization Name" length="50" />
-      <field name="OrganizationEin" type="String" readOnly="true" label="Organization Ein" length="20" />
-      <field name="Salary" type="Double" dataFormatString="c" label="Salary" />
-      <field name="OrgPositionsPositionName" type="String" readOnly="true" label="Designation" length="50" />
-      <field name="CommunicationPhone" type="String" readOnly="true" label="Phone" length="20" />
-      <field name="CommunicationPhoneType" type="String" readOnly="true" label="Phone Type" length="20" />
-      <field name="CommunicationEmail" type="String" readOnly="true" label="Communication Email" length="50" />
-      <field name="EmergencyContactPersonName" type="String" label="Emergency Contact Person Name" length="50" />
-      <field name="EmergencyContactPersonRelation" type="String" label="Emergency Contact Person Relation" length="50" />
-      <field name="EmergencyContactPersonPhone" type="String" label="Emergency Contact Person Phone" length="20" />
-      <field name="Period" type="String" readOnly="true" label="Salary Period" length="30" />
-      <field name="Address1" type="String" readOnly="true" label="Address" length="30" />
-      <field name="DepartmentDeptName" type="String" readOnly="true" label="DepartmentName" length="100" />
       <field name="PositionID" type="Int32" label="Position ID">
         <items style="Lookup" dataController="OrgPositions" newDataView="createForm1" dataValueField="PositionID" dataTextField="PositionName" />
       </field>
+      <field name="PositionName" type="String" readOnly="true" label="Position Name" length="50" />
+      <field name="ManagerID" type="Int32" label="Manager ID">
+        <items style="Lookup" dataController="People" newDataView="createForm1" dataValueField="PersonID" dataTextField="FirstName" />
+      </field>
+      <field name="ManagerFirstName" type="String" readOnly="true" label="Manager First Name" length="20" />
+      <field name="Salary" type="Double" dataFormatString="c" label="Salary" />
+      <field name="SalaryPeriod" type="Int32" dataFormatString="c" label="Salary Period">
+        <items style="Lookup" dataController="SalaryPeriod" newDataView="createForm1" dataValueField="ID" dataTextField="Period" />
+      </field>
+      <field name="SalaryPeriod1" type="String" readOnly="true" label="Salary Period" length="30" />
+      <field name="EmergencyContactPersonName" type="String" label="Emergency Contact Person Name" length="50" />
+      <field name="EmergencyContactPersonRelation" type="String" label="Emergency Contact Person Relation" length="50" />
+      <field name="EmergencyContactPersonPhone" type="String" label="Emergency Contact Person Phone" length="20" />
       <field name="CommunicationID" type="Int32" label="Communication ID">
-        <items style="Lookup" dataController="Communication" newDataView="createForm1" dataValueField="CommunicationID" dataTextField="Phone" copy="CommunicationPhoneType=PhoneType, CommunicationEmail=Email" />
+        <items style="Lookup" dataController="Communication" newDataView="createForm1" dataValueField="CommunicationID" dataTextField="Phone" />
       </field>
+      <field name="CommunicationPhone" type="String" readOnly="true" label="Communication Phone" length="20" />
       <field name="FacilityID" type="Int32" label="Facility ID">
-        <items style="Lookup" dataController="Facility" newDataView="createForm1" dataValueField="FacilityID" dataTextField="FacilityName" copy="OrganizationOrgName1=OrgName1, " />
+        <items style="Lookup" dataController="Facility" newDataView="createForm1" dataValueField="FacilityID" dataTextField="FacilityName" copy="OrganizationOrgName1=OrgName1, OrganizationEin=OrgEin" />
       </field>
+      <field name="FacilityName" type="String" readOnly="true" label="Facility Name" length="100" />
       <field name="AddressID" type="Int32" label="Address ID">
         <items style="Lookup" dataController="Address" newDataView="createForm1" dataValueField="AddressID" dataTextField="Address1" />
       </field>
-      <field name="PersonTypeId" type="Int32" label="Person Type Id">
-        <items style="Lookup" dataController="PersonType" newDataView="createForm1" dataValueField="TypeId" dataTextField="TypeName" />
+      <field name="Address1" type="String" readOnly="true" label="Address Address1" length="30" />
+      <field name="PersonTypeID" type="Int32" label="Person Type Id">
+        <items style="Lookup" dataController="PersonType" newDataView="createForm1" dataValueField="TypeID" dataTextField="TypeName" />
       </field>
-      <field name="DepartmentId" type="Int32" label="Department Id">
-        <items style="Lookup" dataController="Department" newDataView="createForm1" dataValueField="DeptId" dataTextField="DeptName" />
+      <field name="PersonTypeName" type="String" readOnly="true" label="Relation" length="30" />
+      <field name="DepartmentID" type="Int32" label="Department Id">
+        <items style="Lookup" dataController="Department" newDataView="createForm1" dataValueField="DeptID" dataTextField="DeptName" />
       </field>
-      <field name="ManagerID" type="Int32" label="Manager ID">
-        <items style="Lookup" dataController="People" newDataView="createForm1" dataValueField="PersonID" dataTextField="FirstName" copy="SalaryPeriod=PositionID" />
-      </field>
-      <field name="SalaryPeriod" type="Int32" label="PeriodID" />
+      <field name="DepartmentDeptName" type="String" readOnly="true" label="Department Dept Name" length="100" />
+      <field name="OrganizationOrgName1" type="String" readOnly="true" label="Organization Name" length="50" />
+      <field name="OrganizationEin" type="String" readOnly="true" label="Organization Ein" length="20" />
     </fields>
     <views>
       <view id="grid1" type="Grid" commandId="command1" label="People">
@@ -1064,22 +888,20 @@ from "core"."People" "People"
           <dataField fieldName="LastName" columns="20" />
           <dataField fieldName="LastName2" columns="20" />
           <dataField fieldName="AliasName" columns="40" />
-          <dataField fieldName="OrganizationOrgName1" columns="50" />
-          <dataField fieldName="OrganizationEin" columns="20" />
+          <dataField fieldName="PositionID" aliasFieldName="PositionName" />
+          <dataField fieldName="ManagerID" aliasFieldName="ManagerFirstName" />
           <dataField fieldName="Salary" columns="15" />
-          <dataField fieldName="CommunicationPhoneType" columns="20" />
-          <dataField fieldName="CommunicationEmail" columns="50" />
+          <dataField fieldName="SalaryPeriod" aliasFieldName="SalaryPeriod1" />
           <dataField fieldName="EmergencyContactPersonName" columns="50" />
           <dataField fieldName="EmergencyContactPersonRelation" columns="50" />
           <dataField fieldName="EmergencyContactPersonPhone" columns="20" />
-          <dataField fieldName="PositionID" aliasFieldName="OrgPositionsPositionName" />
           <dataField fieldName="CommunicationID" aliasFieldName="CommunicationPhone" />
           <dataField fieldName="FacilityID" aliasFieldName="FacilityName" />
           <dataField fieldName="AddressID" aliasFieldName="Address1" />
-          <dataField fieldName="PersonTypeId" aliasFieldName="PersonTypeName" />
-          <dataField fieldName="DepartmentId" aliasFieldName="DepartmentDeptName" />
-          <dataField fieldName="ManagerID" aliasFieldName="ManagerFirstName" />
-          <dataField fieldName="SalaryPeriod" textMode="Static" aliasFieldName="Period" />
+          <dataField fieldName="PersonTypeID" aliasFieldName="PersonTypeName" />
+          <dataField fieldName="DepartmentID" aliasFieldName="DepartmentDeptName" />
+          <dataField fieldName="OrganizationOrgName1" columns="50" />
+          <dataField fieldName="OrganizationEin" columns="20" />
         </dataFields>
       </view>
       <view id="editForm1" type="Form" commandId="command1" label="Review People">
@@ -1093,22 +915,20 @@ from "core"."People" "People"
               <dataField fieldName="LastName" columns="20" />
               <dataField fieldName="LastName2" columns="20" />
               <dataField fieldName="AliasName" columns="40" />
-              <dataField fieldName="OrganizationOrgName1" columns="50" />
-              <dataField fieldName="OrganizationEin" columns="20" />
+              <dataField fieldName="PositionID" aliasFieldName="PositionName" />
+              <dataField fieldName="ManagerID" aliasFieldName="ManagerFirstName" />
               <dataField fieldName="Salary" columns="15" />
-              <dataField fieldName="CommunicationPhoneType" columns="20" />
-              <dataField fieldName="CommunicationEmail" columns="50" />
+              <dataField fieldName="SalaryPeriod" aliasFieldName="SalaryPeriod1" />
               <dataField fieldName="EmergencyContactPersonName" columns="50" />
               <dataField fieldName="EmergencyContactPersonRelation" columns="50" />
               <dataField fieldName="EmergencyContactPersonPhone" columns="20" />
-              <dataField fieldName="PositionID" aliasFieldName="OrgPositionsPositionName" />
               <dataField fieldName="CommunicationID" aliasFieldName="CommunicationPhone" />
               <dataField fieldName="FacilityID" aliasFieldName="FacilityName" />
               <dataField fieldName="AddressID" aliasFieldName="Address1" />
-              <dataField fieldName="PersonTypeId" aliasFieldName="PersonTypeName" />
-              <dataField fieldName="DepartmentId" aliasFieldName="DepartmentDeptName" />
-              <dataField fieldName="ManagerID" aliasFieldName="ManagerFirstName" />
-              <dataField fieldName="SalaryPeriod" textMode="Static" aliasFieldName="Period" />
+              <dataField fieldName="PersonTypeID" aliasFieldName="PersonTypeName" />
+              <dataField fieldName="DepartmentID" aliasFieldName="DepartmentDeptName" />
+              <dataField fieldName="OrganizationOrgName1" columns="50" />
+              <dataField fieldName="OrganizationEin" columns="20" />
             </dataFields>
           </category>
         </categories>
@@ -1124,22 +944,20 @@ from "core"."People" "People"
               <dataField fieldName="LastName" columns="20" />
               <dataField fieldName="LastName2" columns="20" />
               <dataField fieldName="AliasName" columns="40" />
-              <dataField fieldName="OrganizationOrgName1" columns="50" />
-              <dataField fieldName="OrganizationEin" columns="20" />
+              <dataField fieldName="PositionID" aliasFieldName="PositionName" />
+              <dataField fieldName="ManagerID" aliasFieldName="ManagerFirstName" />
               <dataField fieldName="Salary" columns="15" />
-              <dataField fieldName="CommunicationPhoneType" columns="20" />
-              <dataField fieldName="CommunicationEmail" columns="50" />
+              <dataField fieldName="SalaryPeriod" aliasFieldName="SalaryPeriod1" />
               <dataField fieldName="EmergencyContactPersonName" columns="50" />
               <dataField fieldName="EmergencyContactPersonRelation" columns="50" />
               <dataField fieldName="EmergencyContactPersonPhone" columns="20" />
-              <dataField fieldName="PositionID" aliasFieldName="OrgPositionsPositionName" />
               <dataField fieldName="CommunicationID" aliasFieldName="CommunicationPhone" />
               <dataField fieldName="FacilityID" aliasFieldName="FacilityName" />
               <dataField fieldName="AddressID" aliasFieldName="Address1" />
-              <dataField fieldName="PersonTypeId" aliasFieldName="PersonTypeName" />
-              <dataField fieldName="DepartmentId" aliasFieldName="DepartmentDeptName" />
-              <dataField fieldName="ManagerID" aliasFieldName="ManagerFirstName" />
-              <dataField fieldName="SalaryPeriod" textMode="Static" aliasFieldName="Period" />
+              <dataField fieldName="PersonTypeID" aliasFieldName="PersonTypeName" />
+              <dataField fieldName="DepartmentID" aliasFieldName="DepartmentDeptName" />
+              <dataField fieldName="OrganizationOrgName1" columns="50" />
+              <dataField fieldName="OrganizationEin" columns="20" />
             </dataFields>
           </category>
         </categories>
@@ -1206,21 +1024,21 @@ from "core"."People" "People"
       <command id="command1" type="Text">
         <text>
 select
-	"PersonType"."TypeName" "TypeName"
-	,"PersonType"."TypeId" "TypeId"
+	"PersonType"."TypeId" "TypeID"
+	,"PersonType"."TypeName" "TypeName"
 from "core"."PersonType" "PersonType"
 </text>
       </command>
       <command id="TypeIdIdentityCommand" type="Text" event="Inserted">
         <text>select @@identity</text>
         <output>
-          <fieldOutput fieldName="TypeId" />
+          <fieldOutput fieldName="TypeID" />
         </output>
       </command>
     </commands>
     <fields>
+      <field name="TypeID" type="Int32" allowNulls="false" isPrimaryKey="true" label="Type Id" readOnly="true" />
       <field name="TypeName" type="String" label="Type Name" length="30" showInSummary="true" />
-      <field name="TypeId" type="Int32" allowNulls="false" isPrimaryKey="true" label="Type Id" readOnly="true" />
     </fields>
     <views>
       <view id="grid1" type="Grid" commandId="command1" label="Person Type">

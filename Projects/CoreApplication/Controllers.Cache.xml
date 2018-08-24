@@ -979,7 +979,6 @@ select
 	,"People"."EmergencyContactPersonRelation" "EmergencyContactPersonRelation"
 	,"People"."EmergencyContactPersonPhone" "EmergencyContactPersonPhone"
 	,"SalaryPeriod"."Period" "Period"
-	,"People"."SalaryPeriod" "SalaryPeriod"
 	,"Address"."Address1" "Address1"
 	,"Department"."DeptName" "DepartmentDeptName"
 	,"People"."PositionID" "PositionID"
@@ -989,6 +988,7 @@ select
 	,"People"."PersonTypeId" "PersonTypeId"
 	,"People"."DepartmentId" "DepartmentId"
 	,"People"."ManagerID" "ManagerID"
+	,"People"."SalaryPeriod" "SalaryPeriod"
 from "core"."People" "People"
 	left join "core"."People" "Manager" on "People"."ManagerID" = "Manager"."PersonId"
  and "People"."SalaryPeriod" = "Manager"."PositionID"
@@ -1030,7 +1030,6 @@ from "core"."People" "People"
       <field name="EmergencyContactPersonRelation" type="String" label="Emergency Contact Person Relation" length="50" />
       <field name="EmergencyContactPersonPhone" type="String" label="Emergency Contact Person Phone" length="20" />
       <field name="Period" type="String" readOnly="true" label="Salary Period" length="30" />
-      <field name="SalaryPeriod" type="Int32" label="PeriodID" />
       <field name="Address1" type="String" readOnly="true" label="Address" length="30" />
       <field name="DepartmentDeptName" type="String" readOnly="true" label="DepartmentName" length="100" />
       <field name="PositionID" type="Int32" label="Position ID">
@@ -1054,6 +1053,7 @@ from "core"."People" "People"
       <field name="ManagerID" type="Int32" label="Manager ID">
         <items style="Lookup" dataController="People" newDataView="createForm1" dataValueField="PersonID" dataTextField="FirstName" copy="SalaryPeriod=PositionID" />
       </field>
+      <field name="SalaryPeriod" type="Int32" label="PeriodID" />
     </fields>
     <views>
       <view id="grid1" type="Grid" commandId="command1" label="People">
@@ -1072,7 +1072,6 @@ from "core"."People" "People"
           <dataField fieldName="EmergencyContactPersonName" columns="50" />
           <dataField fieldName="EmergencyContactPersonRelation" columns="50" />
           <dataField fieldName="EmergencyContactPersonPhone" columns="20" />
-          <dataField fieldName="SalaryPeriod" textMode="Static" aliasFieldName="Period" />
           <dataField fieldName="PositionID" aliasFieldName="OrgPositionsPositionName" />
           <dataField fieldName="CommunicationID" aliasFieldName="CommunicationPhone" />
           <dataField fieldName="FacilityID" aliasFieldName="FacilityName" />
@@ -1080,6 +1079,7 @@ from "core"."People" "People"
           <dataField fieldName="PersonTypeId" aliasFieldName="PersonTypeName" />
           <dataField fieldName="DepartmentId" aliasFieldName="DepartmentDeptName" />
           <dataField fieldName="ManagerID" aliasFieldName="ManagerFirstName" />
+          <dataField fieldName="SalaryPeriod" textMode="Static" aliasFieldName="Period" />
         </dataFields>
       </view>
       <view id="editForm1" type="Form" commandId="command1" label="Review People">
@@ -1101,7 +1101,6 @@ from "core"."People" "People"
               <dataField fieldName="EmergencyContactPersonName" columns="50" />
               <dataField fieldName="EmergencyContactPersonRelation" columns="50" />
               <dataField fieldName="EmergencyContactPersonPhone" columns="20" />
-              <dataField fieldName="SalaryPeriod" textMode="Static" aliasFieldName="Period" />
               <dataField fieldName="PositionID" aliasFieldName="OrgPositionsPositionName" />
               <dataField fieldName="CommunicationID" aliasFieldName="CommunicationPhone" />
               <dataField fieldName="FacilityID" aliasFieldName="FacilityName" />
@@ -1109,6 +1108,7 @@ from "core"."People" "People"
               <dataField fieldName="PersonTypeId" aliasFieldName="PersonTypeName" />
               <dataField fieldName="DepartmentId" aliasFieldName="DepartmentDeptName" />
               <dataField fieldName="ManagerID" aliasFieldName="ManagerFirstName" />
+              <dataField fieldName="SalaryPeriod" textMode="Static" aliasFieldName="Period" />
             </dataFields>
           </category>
         </categories>
@@ -1132,7 +1132,6 @@ from "core"."People" "People"
               <dataField fieldName="EmergencyContactPersonName" columns="50" />
               <dataField fieldName="EmergencyContactPersonRelation" columns="50" />
               <dataField fieldName="EmergencyContactPersonPhone" columns="20" />
-              <dataField fieldName="SalaryPeriod" textMode="Static" aliasFieldName="Period" />
               <dataField fieldName="PositionID" aliasFieldName="OrgPositionsPositionName" />
               <dataField fieldName="CommunicationID" aliasFieldName="CommunicationPhone" />
               <dataField fieldName="FacilityID" aliasFieldName="FacilityName" />
@@ -1140,6 +1139,7 @@ from "core"."People" "People"
               <dataField fieldName="PersonTypeId" aliasFieldName="PersonTypeName" />
               <dataField fieldName="DepartmentId" aliasFieldName="DepartmentDeptName" />
               <dataField fieldName="ManagerID" aliasFieldName="ManagerFirstName" />
+              <dataField fieldName="SalaryPeriod" textMode="Static" aliasFieldName="Period" />
             </dataFields>
           </category>
         </categories>
